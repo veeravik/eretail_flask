@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <div class="home-container">
+          <h1> Eretail shop </h1>
+        
+          <div class="signin-buttons" >
+              {% if user_email %}
+                 <h3> {{ user_email }} </h3>
+                 
+                 <form action="/logout" method="GET">
+                  <button type="submit">Logout</button>
+                </form>
+                
+                <!-- <form action="/cart_products" method="GET">
+                  <input type="hidden" name="email" value="{{ user_email }}" >
+
+                  <button type="submit">Go to Cart</button> -->
+                </form>
+
+              
+              {% else %}
+              <form action="/signin" method="GET">
+                <button type="submit">Sign in</button>
+              </form>
+              <form action="/signup" method="GET">
+                <button type="submit" >Sign Up</button>
+              </form>
+              {% endif %}
+
+            
+          </div>
+        </div>
+
+    </head>
+    
+<body>
+  <table border = 1 class="product-table">
+    <tr><td> Date_time </td><td> Order id </td><td> Product </td><td> Total Price </td><td> Payment Status </td></tr>
+    {% for row in history_data %}
+
+    <tr>
+      <td> {{ row["Date_Time"] }} </td>
+       <td> {{ row["order_id"] }} </td>
+       
+    
+       <td> {% for j in row["product"] %} 
+                  <li>{{ j["name"] }} </li>
+                  {% endfor %}
+        </td>
+      
+       <td> {{ row["Total_price"] }} </td>
+       <td>
+          {{ row["payment_status"] }}
+       
+          
+        
+        
+       </td>
+
+  
+
+
+    </tr>
+
+    {% endfor %}
+ </table>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <div class="home-container">
+          <h1> Eretail shop </h1>
+        
+          <div class="signin-buttons" >
+              {% if user_email %}
+                 <h3> {{ user_email }} </h3>
+                 
+                 <form action="/logout" method="GET">
+                  <button type="submit">Logout</button>
+                </form>
+                <form action="/cart_products" method="GET">
+                  <input type="hidden" name="email" value="{{ user_email }}" >
+
+                  <button type="submit">Go to Cart</button>
+                </form>
+                <form action="/order_history" method="GET">
+                  <input type="hidden" name="email" value="{{ user_email }}" >
+
+                  <button type="submit">Order History</button>
+                </form>
+
+              
+              {% else %}
+              <form action="/signin" method="GET">
+                <button type="submit"> User Sign in</button>
+              </form>
+              <form action="/signup" method="GET">
+                <button type="submit" >Sign Up</button>
+              </form>
+              <form action="/clint" method="GET">
+                <button type="submit" >Clint Sign In</button>
+              </form>
+              {% endif %}
+
+            
+          </div>
+        </div>
+
+    </head>
+    
+<body>
+  <table border = 1 class="product-table">
+    <tr><td> Product id </td><td> Product image </td><td> Product Name </td><td> Product Price </td></tr>
+    {% for row in products %}
+
+    <tr>
+       <td> {{ row["product_id"] }} </td>
+       <td><img class="product_image" src = {{ row["product_image"] }}/> </td>
+    
+       <td> {{ row["product_name"] }} </td>
+       <td> {{ row["product_price"] }} </td>
+       <td>
+        <form action = "/add_to_cart" method="GET">
+          
+          <input type="hidden" name="email" value="{{ user_email }}" >
+          <input type="hidden" name="product_id" value="{{ row["product_id"] }}" >
+          <input type="hidden" name="product_image" value="{{ row["product_image"] }}" >
+          <input type="hidden" name="product_name" value="{{ row["product_name"] }}" >
+          <input type="hidden" name="product_price" value="{{ row["product_price"] }}" >
+
+          <button type="submit">Add to cart</button>
+        </form>
+       </td>
+       <!-- <td> {{ value }} </td> -->
+
+
+    </tr>
+
+    {% endfor %}
+ </table>
+</body>
+
+</html>

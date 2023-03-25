@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <h1> Eretail shop </h1>
+        <h2>Enter product details</h2>
+    </head>
+    <body>
+        <form action="http://localhost:5000/insert_clint" method="POST">
+            <label>Product id:</label>
+            <input type="Name" name="product_id" placeholder="Product id"/>
+            <label>Product image:</label>
+            <input type="url"  name="product_image" placeholder="Product image"/>
+            <label>Product Name:</label>
+            <input type="name" name="product_name" placeholder="Product Name "/>
+            <label>Product Price:</label>
+            <input type="number" name="product_price" placeholder="Product Price "/>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

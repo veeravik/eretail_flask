@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+        <h1> Eretail shop </h1>
+        <h2> New user Enter your name,email & Password to restier to Eretail Shop</h2>
+    </head>
+    <body>
+        <form action="http://localhost:5000/signup" method="POST">
+            <label>Full Name:</label>
+            <input type="Name" name="name" placeholder="Name"/>
+            <label>Email:</label>
+            <input type="email"  name="email" placeholder="email"/>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Password"/>
+
+            <button type="submit">Submit</button>
+        </form>
+    </br>
+</br>
+<div> <b>User can <a style='color:red;' href='/signin'>Sign In</a></b> </br> ------Welcome to visit our eretail shop------</div>
+    </body>
+</html>
