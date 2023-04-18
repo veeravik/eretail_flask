@@ -28,7 +28,9 @@ client = pymongo.MongoClient(mongo_connection_string )
 db = client.mydb
 collection = db["eretail"]
 
-
+@app.route("/",methods=["GET"])
+def index():
+  return "App is running. Go to /home to view."
 # collection.insert_one({"product_id":"3","product_name":"Haldiram Bhujiya","product_price":"50","product_image":"https://www.bigbasket.com/media/uploads/p/l/70000835_4-haldirams-namkeen-bhujia-del.jpg?tr=w-750,q=80"})
 
 @app.route("/signin",methods=["GET","POST"])
