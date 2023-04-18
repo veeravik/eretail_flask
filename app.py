@@ -20,6 +20,7 @@ load_dotenv()
 
 stripe_api_key = os.getenv('STRIPE_API_KEY')
 mongo_connection_string = os.getenv('MONGO_CONNECTION_STRING')
+dep_url = os.getenv("DEPLOYMENT_URL")
 
 
 stripe.api_key = stripe_api_key
@@ -37,7 +38,7 @@ def index():
 def signin():
 
   if request.method == "GET":
-    return render_template("./take_input.html")
+    return render_template("./take_input.html", dep_url = dep_url)
   elif request.method == "POST":
     data = request.form
     collection = db["customers"]
@@ -68,7 +69,7 @@ def signin():
 def signup():
 
   if request.method == "GET":
-    return render_template("./new_user.html")
+    return render_template("./new_user.html", dep_url = dep_url)
   elif request.method == "POST":
     data = request.form  
     collection = db["customers"]
@@ -86,7 +87,7 @@ def signup():
 def insert_clint():
 
   if request.method == "GET":
-    return render_template("./insert_data.html")
+    return render_template("./insert_data.html", dep_url = dep_url)
   elif request.method == "POST":
     data = request.form  
     collection = db["eretail"]
@@ -116,7 +117,7 @@ def clint():
     if collection.find_one({"email":data["email"]}):
       
       if collection.find_one({"email":data["email"],"password":data["password"]}):
-        return render_template("./insert_data.html")
+        return render_template("./insert_data.html", dep_url = dep_url)
 
       else:
         return "User not found or incorrect password"
@@ -226,8 +227,8 @@ def order():
 
 
   stripe_data = stripe.checkout.Session.create(
-      success_url="http://localhost:5000/success?user_email="+user_email,
-      cancel_url="http://localhost:5000/cancel",
+      success_url=dep_url+"/success?user_email="+user_email,
+      cancel_url=dep_url+"/cancel",
 
       line_items=[{
                 'price_data': {

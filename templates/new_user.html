@@ -7,7 +7,7 @@
         <h2> New user Enter your name,email & Password to restier to Eretail Shop</h2>
     </head>
     <body>
-        <form action="http://localhost:5000/signup" method="POST">
+        <form action="{{ dep_url + "/signup"}}" method="POST">
             <label>Full Name:</label>
             <input type="Name" name="name" placeholder="Name"/>
             <label>Email:</label>

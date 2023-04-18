@@ -6,7 +6,7 @@
         <h1> Eretail shop </h1>
         <h2>Enter your email & password for signin</h2></head>
     <body>
-        <form action="http://localhost:5000/signin" method="POST">
+        <form action="{{ dep_url + "/signin"}}" method="POST">
             
             <label>Email:</label>
             <input type="email"  name="email" placeholder="email"/>

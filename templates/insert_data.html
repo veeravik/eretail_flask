@@ -6,7 +6,7 @@
         <h2>Enter product details</h2>
     </head>
     <body>
-        <form action="http://localhost:5000/insert_clint" method="POST">
+        <form action="{{ dep_url + "/insert_clint"}}" method="POST">
             <label>Product id:</label>
             <input type="Name" name="product_id" placeholder="Product id"/>
             <label>Product image:</label>
